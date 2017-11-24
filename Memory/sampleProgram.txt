@@ -1,0 +1,90 @@
+===========================
+SAMPLE INPUT
+===========================
+
+Location |    Instruction
+ in IM   |
+=======================
+[  0]    |    FRC R0 to 9
+[  1]    |    FRC R1 to 9
+[  2]    |    FRC R10 to 0
+[  3]    |    STORE FROM R0 TO @R10 = M0 
+[  4]    |    R0-R1->R
+[  5]    |    BNZ to location IM[7] (SNZ)
+[  6]    |    BSA TO IM[100]
+[  7]    |    LOAD FROM @R10 = M0 TO R3
+[  8]    |    R3-R10->R4
+[  9]    |    HLT
+
+[100]    |    FRC R10 to 0
+[101]    |    STORE FROM R2 TO @R10 = M0 
+[102]    |    RET
+
+
+NOTE:
+
+The register fields of each instruction above has been initialised in the instruction memory module.
+
+
+===========================
+SAMPLE OUTPUT
+===========================
+(  0) FRC R[ 0] to     9
+
+
+(  1) FRC R[ 1] to     9
+
+
+(  2) FRC R[10] to     0
+
+
+STALL due to RAW, stallCtr=2, regEx=32, regMem=10
+
+
+STALL due to RAW, stallCtr=1, regEx=32, regMem=32
+
+
+(  3) LD/STR(0/1)? 1, R[ 0], [R[10]]
+
+
+(  4) ALU instruction, opcode= 1
+        R[ 0] A=         9
+        R[ 1] B=         9
+
+
+(  5) BNZ: taken? 0, Addressing: 1 (reg indir-0, dir-1), R[ 0], M[  7]
+
+
+(  6) BSA, Addressing: 1 (reg indir-0, dir-1), R[ 0], M[100]
+
+
+(100) FRC R[10] to     0
+
+
+STALL due to RAW, stallCtr=2, regEx=32, regMem=10
+
+
+STALL due to RAW, stallCtr=1, regEx=32, regMem=32
+
+
+(101) LD/STR(0/1)? 1, R[ 2], [R[10]]
+
+
+(102) RET, @LR =          7
+
+
+(  7) LD/STR(0/1)? 0, R[ 3], [R[10]]
+
+
+STALL due to RAW, stallCtr=2, regEx=32, regMem= 3
+
+
+STALL due to RAW, stallCtr=1, regEx=32, regMem=32
+
+
+(  8) ALU instruction, opcode= 1
+        R[ 3] A=         0
+        R[10] B=         0
+
+
+(  9) HLT

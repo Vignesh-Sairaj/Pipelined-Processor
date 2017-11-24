@@ -1,0 +1,16 @@
+0  -- ADD
+1  -- SUB
+2  -- MUL
+3  -- ShL
+4  -- ShR
+5  -- RoL
+6  -- RoR
+7  -- AND
+8  -- OR
+9  -- NOR
+10 -- NAND /*Switched*/
+11 -- XOR
+12 -- XNOR
+13 -- NOT /*Switched*/
+14 -- CMP
+15 -- NEG

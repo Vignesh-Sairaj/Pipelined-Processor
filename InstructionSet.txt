@@ -1,0 +1,82 @@
+INSTRUCTION SET ARCHITECHTURE
+
+BITS [31:28] VALUES:
+
+1  -- ALU
+2  -- CONTROL
+4  -- MEM
+8  -- CONSTANT
+15 -- FPU
+
+I.  ALU-BITS:
+
+    [27:24] -- OPCODE 4-bit
+    [23:19] -- Rsrc1_addr 5-bit 
+    [18:14] -- Rsrc2_addr 5-bit 
+    [13:9]  -- Rdst_addr 5-bit
+    [8:0]   -- UNUSED
+
+    ALU-4-bit-OpCode:
+    0  -- ADD
+    1  -- SUB
+    2  -- MUL
+    3  -- ShL
+    4  -- ShR
+    5  -- RoL
+    6  -- RoR
+    7  -- AND
+    8  -- OR
+    9  -- NOR
+    10 -- NAND
+    11 -- XOR
+    12 -- XNOR
+    13 -- NOT
+    14 -- CMP
+    15 -- NEG
+
+II. CONTROL-BITS:
+    [27:25]  -- OpCode 3-bit
+    [24]     -- ~(Register Indirect)/Direct Address
+    [23:19]  -- R_addr - address of Register containing address
+    [18:11]  -- Address 8-bit (only for Branch variants, used only if 24th bit is 1, i.e., Direct Adressing is selected)
+    [10:0]   -- UNUSED
+
+    CONTROL-3-bit-OpCode
+    0  -- BUN - Branch Unconditional
+    1  -- BSA - Branch, save return address in Link Register
+    2  -- RET - Make PC equal to value in LR
+    3  -- HLT - Halt execution
+    4  -- BIZ - Branch if zFlag is asserted (zero)
+    5  -- BNZ - Branch if zFlag is not asserted (not zero)
+    6  -- BIV - Branch if vFlag is asserted (valid)
+    7  -- BNV - Branch if vFlag is not asserted (not valid)
+
+III. MEMORY REFERENCE-BITS
+    [27]    -- Write/Read 1-bit (0-LOAD, 1-STORE)
+    [26:24] -- UNUSED
+    [23:19] -- Reg Address 5-bit (Data to be loaded/stored to/from register)
+    [18:14] -- Register adress (5-bit) Containing address to be written to/read from
+    [13:6]  -- 8-bit offset to be added to memory address in register
+    [5:0]   -- UNUSED
+
+IV. FORCE CONSTANT-BITS
+    [27:24] -- UNUSED
+    [23:19] -- Register Address 5-bit
+    [18:16] -- UNUSED
+    [15:0]  -- Constant Data 16-bit
+
+
+V.  FPU-BITS:
+
+    [27:26] -- OPCODE 2-bit
+    [25:24] -- UNUSED
+    [23:19] -- Rsrc1_addr 5-bit
+    [18:14] -- Rsrc2_addr 5-bit
+    [13:9]  -- Rdst_addr 5-bit
+    [8:0]   -- UNUSED
+
+    FPU-2-bit-OpCode (Values):
+    0  -- ADD
+    1  -- SUB
+    2  -- MUL
+    3  -- CMP
