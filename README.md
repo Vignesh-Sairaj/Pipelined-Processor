@@ -2,6 +2,7 @@
 
 A fully pipelined MIPS-inspired 32-bit processor with branch detection and forwarding. Supports 32-bit IEEE-754 floating point instructions.
 
+
 - To run the simulation, compile and run the file PipelinedProcessor_tb.v using iVerilog.
 
 - The opCodes and the operations supported are specified in the file InstructionSet.txt
