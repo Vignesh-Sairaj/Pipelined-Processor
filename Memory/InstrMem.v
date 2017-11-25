@@ -118,6 +118,13 @@ module InstrMem(chipSel, clk, addr, dat, write);
         IM[9][27:25] = 3'd3;*/
 
 
+
+
+
+
+        //SAMPLE PROGRAM FIBONACCI SEQUENCE GENERATOR
+
+
         //FIBONACCI
         //0)FRC R31 to n
         //1)FRC R10 to 0
